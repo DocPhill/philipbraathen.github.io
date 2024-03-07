@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        canvas{
+            border: 2px solid black;
+
+            cursor: none;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Bruk av canvas elementet
+        </h1>
+        <br>
+
+        <canvas id="canvas" width="400px" height="500px"></canvas>
+    </main>
+
+    <script>
+        const canvas = document.getElementById("canvas")
+
+        let ctx = canvas.getContext('2d')
+
+        let red = Math.floor(Math.random()*256)
+        let green = Math.floor(Math.random()*256)
+        let blue = Math.floor(Math.random()*256)
+
+        function tegnSirkel(e){
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.beginPath()
+
+
+        let x = e.offsetX
+        let y = e.offsetY
+        let r = 15
+
+        ctx.arc(x , y, r, 0, 2*Math.PI)
+        ctx.stroke()
+
+        ctx.fill()
+        }
+
+        function skiftFarge(){
+            let red = Math.floor(Math.random()*256)
+            let green = Math.floor(Math.random()*256)
+            let blue = Math.floor(Math.random()*256)
+
+            ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`
+            ctx.fill()
+        }
+
+        canvas.addEventListener('click', skiftFarge)
+
+        canvas.addEventListener('mousemove', tegnSirkel)
+
+    </script>
+    
+</body>
+</html>
